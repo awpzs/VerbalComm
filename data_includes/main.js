@@ -30,6 +30,44 @@ newTrial( "welcome" ,
 )
 .log( "ID" , getVar("ID") )
 
+Template( GetTable("pracdesign.csv") , row =>
+    newTrial( "practice", 
+        newTimer(500)
+            .start()
+            .wait()
+        ,
+        newImage("one", row.FirstDisplay)
+            .size(1280,800)
+        ,
+        newCanvas(1280,800)
+            .add(   0 , 0 , getImage("one") )
+            .print()
+        ,
+        newText(row.Context)
+            .print()
+        ,
+        newSelector()
+            .add( getImage("one") )
+            .wait()
+        ,
+        newImage("two", row.SecondDisplay)
+            .size(1280,800)
+        ,
+        newCanvas(1280,800)
+            .add(   0 , 0 , getImage("two") )
+            .print()
+        ,
+        newTextInput("Response", "Now")
+            .log()
+            .lines(1)
+            .print()
+        ,
+        newButton("Continue")
+            .print()
+            .wait()
+    )
+);
+
 Template( GetTable( "pracdesign.csv" )
         .setGroupColumn( "List" )
     , variable =>
