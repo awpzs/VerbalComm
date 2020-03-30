@@ -3,7 +3,7 @@ PennController.ResetPrefix(null); // Initiates PennController
 // Start typing your code here
 PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
 
-Sequence( "welcome" , "practice", "send" , "final" )
+Sequence( "welcome", "practice" )
 
 newTrial( "welcome" ,
     defaultText
@@ -30,103 +30,54 @@ newTrial( "welcome" ,
 )
 .log( "ID" , getVar("ID") )
 
-Template( GetTable("pracdesign.csv") , row =>
-    newTrial( "practice", 
-        newTimer(500)
+Template(
+    GetTable("pracdesign.csv")
+            .setGroupColumn("List"), variable =>
+    newTrial( "practice" ,
+        newTimer(200)
             .start()
             .wait()
         ,
-        newImage("one", row.FirstDisplay)
-            .size(1280,800)
-        ,
-        newCanvas(1280,800)
-            .add(   0 , 0 , getImage("one") )
+        newImage("one", variable.FirstDisplay)
+            .size(768,480)
             .print()
         ,
-        newText(row.Context)
+        newText(variable.Context)
+            .settings.center()
             .print()
         ,
         newSelector()
             .add( getImage("one") )
             .wait()
         ,
-        newImage("two", row.SecondDisplay)
-            .size(1280,800)
+        clear()
         ,
-        newCanvas(1280,800)
-            .add(   0 , 0 , getImage("two") )
-            .print()
-        ,
-        newTextInput("Response", "Now")
-            .log()
-            .lines(1)
-            .print()
-        ,
-        newButton("Continue")
-            .print()
-            .wait()
-    )
-);
-
-Template( GetTable( "pracdesign.csv" )
-        .setGroupColumn( "List" )
-    , variable =>
-    newTrial( "practice" ,
-        newTimer(500)
+        newTimer(200)
             .start()
             .wait()
         ,
         newImage("two", variable.SecondDisplay)
-            .size(1280,800)
-        ,
-        newImage("one", variable.FirstDisplay)
-            .size(1280,800)
-        ,
-        newCanvas(1280,800)
-            .add(   0 , 0 , getImage("one") )
+            .size(768,480)
             .print()
         ,
-        newText(variable.Description)
-            .print()
-        ,
-        newSelector()
-            .add( getImage("one") )
-            .wait()
-        ,
-        newTimer(500)
-            .start()
-            .wait()
-        ,
-        newCanvas(1280,800)
-            .add(   0 , 0 , getImage("two") )
-            .print()
-        ,
-        newTextInput("Response", "Now")
+        newTextInput("Response", "现在")
             .log()
-            .lines(1)
+            .settings.center()
             .print()
         ,
-        newButton("Continue")
+        newButton("继续")
+            .settings.center()
             .print()
+            .wait()
+        ,
+        newTimer(200)
+            .start()
             .wait()
   )
   .log( "ID"     , getVar("ID")    )
   .log( "List"   , variable.List   )
-  .log( "Item" , variable.Item )
-  .log( "Box"  , variable.Box  )
-  .log( "Gender" , variable.Gender)
-)
-
-SendResults( "send" )
-
-
-newTrial( "final" ,
-    newText("<p>Thank you for your participation!</p>")
-        .print()
-    ,
-    newText("<p><a href='https://www.pcibex.net/' href='_blank'>Click here to validate your participation.</a></p>")
-        .print()
-    ,
-    newButton("void")
-        .wait()
+  .log( "Item"   , variable.Item   )
+  .log( "Context"   , variable.Context   )
+  .log( "Box"   , variable.Box   )
+  .log( "Gender"   , variable.Gender   )
 )
