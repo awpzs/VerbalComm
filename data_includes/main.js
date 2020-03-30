@@ -38,12 +38,21 @@ Template(
             .start()
             .wait()
         ,
+        newText("请仔细阅读图片下方的句子，并记住红框里的人物/物件的位置。")
+            .settings.center()
+            .print()
+        ,
+        newText("之后请点击句子上方的图片，看下一张图片。")
+            .settings.center()
+            .print()
+        ,
         newImage("one", variable.FirstDisplay)
             .size(768,480)
             .print()
         ,
         newText(variable.Context)
             .settings.center()
+            .bold()
             .print()
         ,
         newSelector()
@@ -55,6 +64,22 @@ Template(
         newTimer(200)
             .start()
             .wait()
+        ,
+        newText("红框里的人物/物件改变了位置。")
+            .settings.center()
+            .print()
+        ,
+        newText("请用一句话简洁明了地描述该人物/物件的新位置。例如：")
+            .settings.center()
+            .print()
+        ,
+        newText(variable.Hint1)
+            .settings.center()
+            .print()
+        ,
+        newText(variable.Hint2)
+            .settings.center()
+            .print()
         ,
         newImage("two", variable.SecondDisplay)
             .size(768,480)
