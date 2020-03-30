@@ -1,6 +1,7 @@
 PennController.ResetPrefix(null); // Initiates PennController
 
 // Start typing your code here
+PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
 
 Sequence( "welcome" , "practice", "send" , "final" )
 
@@ -36,40 +37,40 @@ Template( GetTable( "pracdesign.csv" )
         newTimer(500)
             .start()
             .wait()
-    ,
-    newImage("two", variable.SecondDisplay)
-        .size(1280,800)
-    ,
-    newImage("one", variable.FirstDisplay)
-        .size(1280,800)
-    ,
-    newCanvas(1280,800)
-        .add(   0 , 0 , getImage("one") )
-        .print()
-    ,
-    newText(variable.Description)
-        .print()
-    ,
-    newSelector()
-        .add( getImage("one") )
-        .wait()
-    ,
-    newTimer(500)
-        .start()
-        .wait()
-    ,
-    newCanvas(1280,800)
-        .add(   0 , 0 , getImage("two") )
-        .print()
-    ,
-    newTextInput("Response", "Now")
-        .log()
-        .lines(1)
-        .print()
-    ,
-    newButton("Continue")
-        .print()
-        .wait()
+        ,
+        newImage("two", variable.SecondDisplay)
+            .size(1280,800)
+        ,
+        newImage("one", variable.FirstDisplay)
+            .size(1280,800)
+        ,
+        newCanvas(1280,800)
+            .add(   0 , 0 , getImage("one") )
+            .print()
+        ,
+        newText(variable.Description)
+            .print()
+        ,
+        newSelector()
+            .add( getImage("one") )
+            .wait()
+        ,
+        newTimer(500)
+            .start()
+            .wait()
+        ,
+        newCanvas(1280,800)
+            .add(   0 , 0 , getImage("two") )
+            .print()
+        ,
+        newTextInput("Response", "Now")
+            .log()
+            .lines(1)
+            .print()
+        ,
+        newButton("Continue")
+            .print()
+            .wait()
   )
   .log( "ID"     , getVar("ID")    )
   .log( "List"   , variable.List   )
