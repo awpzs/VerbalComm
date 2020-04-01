@@ -3,23 +3,15 @@ PennController.ResetPrefix(null); // Initiates PennController
 // Start typing your code here
 PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
 
-Sequence( "consent", "identification", "practice", "prac_end", "experiment", "questionnaire", "send", "final" )
+Sequence( "consent", "identification", "instruction", "practice", "prac_end", "experiment", "questionnaire", "send", "final" )
 
 newTrial( "consent" ,
-    defaultText
+    newHtml("consent_form", "consentform.html")
         .print()
     ,
-    newText("<p>欢迎参加该实验！实验开始前，请您同意以下事项：</p>")
-    ,
-    newText("<p>本研究的结果将会被匿名化安全保存，只有本研究组的成员能看到研究结果。</p>")
-    ,
-    newText("<p>本研究的的结果可能会在学术期刊/书籍/会议上发表，但您的名字或者其他可以确认您身份的信息将不会在任何发表的材料中出现。</p>")
-    ,
-    newText("<p>您的参与完全基于自愿的原则，您可以在实验的任何过程中要求退出，并且您不会因为退出实验而受到处罚或损失。</p>")
-    ,
-    newText("<p>您已阅读并了解该研究的目的、过程、可能的危险以及潜在的获益（见下方链接）。您已经详细阅读了本被试同意书。</p>")
-    ,
-    newText("<p><a href='https://github.com/awpzs/VerbalComm' target='_blank'>研究详情</a></p>")
+    newText("<p><a href='https://expt.pcibex.net/ajax/download/demo/chunk_includes/information_ENG.html' target='_blank'>研究详情（in English）</a></p>")
+        .settings.center()
+        .print()
     ,
     newButton("同意并继续")
         .settings.center()
@@ -87,6 +79,16 @@ newTrial( "identification" ,
 .log( "Age", getVar("Age"))
 .log( "ID" , getVar("ID") )
 
+newTrial( "instruction" ,
+    newHtml("instruction_form", "instruction.html")
+        .print()
+    ,
+    newButton("继续")
+        .settings.center()
+        .print()
+        .wait()
+)
+
 Template(
     GetTable("pracdesign.csv")
             .setGroupColumn("List"), variable =>
@@ -126,11 +128,8 @@ Template(
             .settings.center()
             .print()
         ,
-        newText(variable.Hint1)
-            .settings.center()
-            .print()
-        ,
-        newText(variable.Hint2)
+        newText(variable.Hint)
+            .italic()
             .settings.center()
             .print()
         ,
@@ -140,10 +139,9 @@ Template(
         ,
         newTextInput("Response", "现在")
             .log()
-            .settings.center()
-            .print()
         ,
         newButton("继续")
+            .before( getTextInput("Response") )
             .settings.center()
             .print()
             .wait()
@@ -202,10 +200,9 @@ Template(
         ,
         newTextInput("Response", "现在")
             .log()
-            .settings.center()
-            .print()
         ,
         newButton("继续")
+            .before( getTextInput("Response") )
             .settings.center()
             .print()
             .wait()
@@ -233,6 +230,7 @@ newTrial( "questionnaire" ,
         .print()
     ,
     newButton("继续")
+        .settings.center()
         .print()
         .wait()
 )

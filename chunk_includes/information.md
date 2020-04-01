@@ -1,3 +1,5 @@
+![](UoS-LOGO-PMS-349.png)
+
 ---
 title: Participant Information Sheet (GUEP330)
 ---
@@ -10,11 +12,11 @@ title: Participant Information Sheet (GUEP330)
 
 3.  **Why have I been invited to take part?**
 
-    You have been asked to participate because we want to understand how native speakers of Mandarin Chinese, who are monolingual and non-dyslexic, and are aged less than 30 years old, achieve referential communication.
+    You have been asked to participate because we want to understand how native speakers of Mandarin Chinese, who are non-dyslexic, and are aged less than 30 years old, achieve referential communication.
 
 4.  **Do I have to take part?**
 
-    No, you don't have to take part, and participation in this study is voluntary. You may withdraw from this study at any time without giving a reason and without getting any penalty. You can keep this information sheet by saving it to your own device, and you will be asked to sign a consent form.
+    No, you are not bounded to take part, and participation in this study is voluntary. You may withdraw from this study at any time without giving a reason and without getting any penalty. You can keep this information sheet by saving it to your own device, and you will be asked to sign a consent form.
 
 5.  **What will happen if I take part?**
 
@@ -26,7 +28,7 @@ title: Participant Information Sheet (GUEP330)
 
 7.  **Are there any benefits in taking part?**
 
-    You will receive £7 for taking part.
+    You will receive £7 for taking part. Please note that you will only receive the payment after you have completed the experiment.
 
 8.  **What happens to the data I provide? **
 
@@ -44,4 +46,4 @@ title: Participant Information Sheet (GUEP330)
 
     If you would like to discuss the research with someone, please get in touch with Dr Kumiko Fukumura (kumiko.fukumura[at]stir.ac.uk). If you wish to discuss further, please contact: Dr Paul Dudchenko, Head of Psychology, Natural Sciences (p.a.dudchenko[at]stir.ac.uk).
 
-**Thank you for your participation.**
+    **Thank you for your participation.**

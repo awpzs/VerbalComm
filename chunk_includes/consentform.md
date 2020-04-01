@@ -1,3 +1,5 @@
+![](UoS-LOGO-PMS-349.png)
+
 ---
 title: 研究知情同意书
 ---
