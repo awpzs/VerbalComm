@@ -241,7 +241,7 @@ newTrial( "final" ,
     newText("<p>感谢您的参与！</p>")
         .print()
     ,
-    newText("<p><a href='https://www.stir.ac.uk/' href='_blank'>点击此处结束实验</a></p>")
+    newText("<p><a href='https://app.prolific.co/submissions/complete?cc=36EDE175' href='_blank'>点击此处结束实验</a></p>")
         .print()
     ,
     newButton("void")
