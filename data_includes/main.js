@@ -1,5 +1,5 @@
 PennController.ResetPrefix(null); // Initiates PennController
-//PennController.DebugOff()
+PennController.DebugOff()
 // Start typing your code here
 PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
 
