@@ -3,14 +3,39 @@ PennController.DebugOff()
 // Start typing your code here
 PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
 
-Sequence( "consent", "identification", "instruction", "practice", "prac_end", "experiment", "questionnaire", "send", "final" )
+Sequence( "prolific", "information", "consent", "identification", "instruction", "practice", "prac_end", "experiment", "questionnaire", "send", "final" )
+
+newTrial( "prolific" ,
+    defaultText
+        .print()
+    ,
+    newText("<p>开始实验前，请填写您的Prolific ID：</p>")
+    ,
+    newTextInput("inputID", "Prolific ID")
+        .print()
+    ,
+    newButton("继续")
+        .print()
+        .wait()
+    ,
+    newVar("ID")
+        .global()
+        .set( getTextInput("inputID") )
+)
+.log( "ID" , getVar("ID") )
+
+newTrial( "information" ,
+    newHtml("information_ENG", "information_ENG.html")
+        .print()
+    ,
+    newButton("继续")
+        .settings.center()
+        .print()
+        .wait()
+)
 
 newTrial( "consent" ,
     newHtml("consent_form", "consentform.html")
-        .print()
-    ,
-    newText("<p><a href='https://expt.pcibex.net/ajax/download/demo/chunk_includes/information_ENG.html' target='_blank'>研究详情（in English）</a></p>")
-        .settings.center()
         .print()
     ,
     newButton("同意并继续")
@@ -61,7 +86,7 @@ newTrial( "identification" ,
     newTextInput("inputAge", "年龄")
         .print()
     ,
-    newTextInput("inputID", "姓名")
+    newTextInput("inputName", "姓名")
         .print()
     ,
     newButton("开始")
@@ -72,12 +97,12 @@ newTrial( "identification" ,
         .global()
         .set( getTextInput("inputAge") )
     ,
-    newVar("ID")
+    newVar("Name")
         .global()
-        .set( getTextInput("inputID") )
+        .set( getTextInput("inputName") )
 )
 .log( "Age", getVar("Age"))
-.log( "ID" , getVar("ID") )
+.log( "Name" , getVar("ID") )
 
 newTrial( "instruction" ,
     newHtml("instruction_form", "instruction.html")
