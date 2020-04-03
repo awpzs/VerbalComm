@@ -1,44 +1,20 @@
 PennController.ResetPrefix(null); // Initiates PennController
-PennController.DebugOff()
+//PennController.DebugOff()
 // Start typing your code here
 PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
 
-Sequence( "prolific", "information", "consent", "identification", "instruction", "practice", "prac_end", "experiment", "questionnaire", "send", "final" )
-
-newTrial( "prolific" ,
-    defaultText
-        .print()
-    ,
-    newText("<p>开始实验前，请填写您的Prolific ID：</p>")
-    ,
-    newTextInput("inputID", "Prolific ID")
-        .print()
-    ,
-    newButton("继续")
-        .print()
-        .wait()
-    ,
-    newVar("ID")
-        .global()
-        .set( getTextInput("inputID") )
-)
-.log( "ID" , getVar("ID") )
+Sequence( "information", "identification", "instruction", "prac_1", "prac_2", "prac_end", "experiment", "questionnaire", "send", "final" )
 
 newTrial( "information" ,
-    newHtml("information_ENG", "information_ENG.html")
+    newHtml("information_CHN", "information_CHN.html")
         .print()
+//    ,
+//    newTextInput("inputName", "名字")
+//        .settings.center()
+//        .log()
+//        .print()
     ,
-    newButton("继续")
-        .settings.center()
-        .print()
-        .wait()
-)
-
-newTrial( "consent" ,
-    newHtml("consent_form", "consentform.html")
-        .print()
-    ,
-    newButton("同意并继续")
+    newButton("我同意")
         .settings.center()
         .print()
         .wait()
@@ -52,7 +28,7 @@ newTrial( "identification" ,
     ,
     newText("<p>您是否是大学生？</p>")
     ,
-    newScale("uni", "Yes", "No")
+    newScale("uni", "是", "否")
         .settings.labelsPosition("right")
         .log("last")
         .print()
@@ -62,31 +38,34 @@ newTrial( "identification" ,
     ,
     newText("<p>您是否被确诊过有阅读或视觉障碍？</p>")
     ,
-    newScale("dyslexia", "Yes", "No")
+    newScale("dyslexia", "是", "否")
         .settings.labelsPosition("right")
         .log("last")
         .print()
     ,
     newText("<p>您的母语是否为中文？</p>")
     ,
-    newScale("native", "Yes", "No")
+    newScale("native", "是", "否")
         .settings.labelsPosition("right")
         .log("last")
         .print()
     ,
     newText("<p>您在家时，父母是否只跟您讲中文？</p>")
     ,
-    newScale("nativeParents", "Yes", "No")
+    newScale("nativeParents", "是", "否")
         .settings.labelsPosition("right")
         .log("last")
         .print()
     ,
-    newText("<p>请在下方填写您的年龄和姓名首字母缩写，然后点击“开始”进入实验介绍环节。</p>")
+    newText("<p>请在下方填写您的年龄、性别和Prolific ID，然后点击“开始”进入实验介绍环节。</p>")
     ,
     newTextInput("inputAge", "年龄")
         .print()
     ,
-    newTextInput("inputName", "姓名")
+    newTextInput("inputSex", "性别")
+        .print()    
+    ,
+    newTextInput("inputID", "Prolific ID")
         .print()
     ,
     newButton("开始")
@@ -97,12 +76,17 @@ newTrial( "identification" ,
         .global()
         .set( getTextInput("inputAge") )
     ,
-    newVar("Name")
+    newVar("Sex")
         .global()
-        .set( getTextInput("inputName") )
+        .set( getTextInput("inputSex") )
+    ,
+    newVar("ID")
+        .global()
+        .set( getTextInput("inputID") )
 )
 .log( "Age", getVar("Age"))
-.log( "Name" , getVar("ID") )
+.log( "Sex", getVar("Sex"))
+.log( "ID" , getVar("ID") )
 
 newTrial( "instruction" ,
     newHtml("instruction_form", "instruction.html")
@@ -114,74 +98,113 @@ newTrial( "instruction" ,
         .wait()
 )
 
-Template(
-    GetTable("pracdesign.csv")
-            .setGroupColumn("List"), variable =>
-    newTrial( "practice" ,
-        newTimer(200)
-            .start()
-            .wait()
-        ,
-        newText("请仔细阅读图片下方的句子，并记住图片里的人物/物件的位置。")
-            .settings.center()
-            .print()
-        ,
-        newText("之后请点击句子，看下一张图片。")
-            .settings.center()
-            .print()
-        ,
-        newImage("one", variable.FirstDisplay)
-            .size(768,480)
-            .print()
-        ,
-        newText("sentence", variable.Context)
-            .settings.center()
-            .bold()
-            .print()
-        ,
-        newSelector()
-            .add( getText("sentence") )
-            .wait()
-        ,
-        clear()
-        ,
-        newText("有人物/物件改变了位置。")
-            .settings.center()
-            .print()
-        ,
-        newText("请用一句话简洁明了地描述该人物/物件的新位置。例如：")
-            .settings.center()
-            .print()
-        ,
-        newText(variable.Hint)
-            .italic()
-            .settings.center()
-            .print()
-        ,
-        newImage("two", variable.SecondDisplay)
-            .size(768,480)
-            .print()
-        ,
-        newTextInput("Response", "现在")
-            .log()
-        ,
-        newButton("继续")
-            .before( getTextInput("Response") )
-            .settings.center()
-            .print()
-            .wait()
-        ,
-        newTimer(200)
-            .start()
-            .wait()
-  )
-  .log( "ID"     , getVar("ID")    )
-  .log( "List"   , variable.List   )
-  .log( "Item"   , variable.Item   )
-  .log( "Context"   , variable.Context   )
-  .log( "Box"   , variable.Box   )
-  .log( "Gender"   , variable.Gender   )
+newTrial( "prac_1" ,
+    newTimer(200)
+        .start()
+        .wait()
+    ,
+    newText("图片下面的句子描述了人物/物件的位置。请仔细阅读句子，然后点击句子继续。")
+        .settings.center()
+        .print()
+    ,
+    newImage("one", "P3_1.jpg")
+        .size(768,480)
+        .print()
+    ,
+    newText("sentence", "香肠上方的男人在三号位。")
+        .settings.center()
+        .bold()
+        .print()
+    ,
+    newSelector()
+        .add( getText("sentence") )
+        .wait()
+    ,
+    clear()
+    ,
+    newText("请以“现在”开头，用一句话描述人物/物体的位置变化。例如：")
+        .settings.center()
+        .print()
+    ,
+    newText("现在在四号位。/现在他在四号位。/现在男人在四号位。")
+        .italic()
+        .settings.center()
+        .print()
+    ,
+    newImage("two", "P3_2.jpg")
+        .size(768,480)
+        .print()
+    ,
+    newTextInput("Response", "现在")
+        .log()
+    ,
+    newButton("继续")
+        .before( getTextInput("Response") )
+        .settings.center()
+        .print()
+        .wait()
+    ,
+    newTimer(200)
+        .start()
+        .wait()
 )
+.log( "ID"     , getVar("ID")    )
+
+newTrial( "prac_2" ,
+    newTimer(200)
+        .start()
+        .wait()
+    ,
+    newText("图片里有不止一个红框，这意味着其中一个红框里的人物/物件的位置会发生改变。")
+        .settings.center()
+        .print()
+    ,
+    newText("请在阅读完句子后，点击句子继续。")
+        .settings.center()
+        .print()
+    ,
+    newImage("one", "P1_1.jpg")
+        .size(768,480)
+        .print()
+    ,
+    newText("sentence", "行李箱旁边的溜冰鞋在一号位。")
+        .settings.center()
+        .bold()
+        .print()
+    ,
+    newSelector()
+        .add( getText("sentence") )
+        .wait()
+    ,
+    clear()
+    ,
+    newText("请用一句话简洁明了地描述该人物/物件的新位置。例如：")
+        .settings.center()
+        .print()
+    ,
+    newText("现在在五号位。/现在它在五号位。/现在溜冰鞋在五号位。")
+        .italic()
+        .settings.center()
+        .print()
+    ,
+    newImage("two", "P1_2.jpg")
+        .size(768,480)
+        .print()
+    ,
+    newTextInput("Response", "现在")
+        .log()
+    ,
+    newButton("继续")
+        .before( getTextInput("Response") )
+        .settings.center()
+        .print()
+        .wait()
+    ,
+    newTimer(200)
+        .start()
+        .wait()
+)
+.log( "ID"     , getVar("ID")    )
 
 newTrial( "prac_end" ,
     defaultText
@@ -253,12 +276,21 @@ newTrial( "questionnaire" ,
         .settings.lines(0)
         .settings.size(400, 200)
         .print()
+//    ,
+//    newText("<p>请在下方输入您的E-Mail，以领取Amazon voucher code</p>")
+//        .print()
+//    ,
+//    newTextInput("email", "E-Mail")
+//        .settings.log()
+//        .settings.lines(0)
+//        .print()
     ,
     newButton("继续")
         .settings.center()
         .print()
         .wait()
 )
+.log( "ID"     , getVar("ID")    )
 
 SendResults( "send" )
 
