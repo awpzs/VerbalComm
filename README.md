@@ -1,6 +1,4 @@
----
-title: 语言交流研究（Verbal communication）
----
+## 语言交流研究（Verbal communication）
 
 非常感谢您有兴趣参加该项研究。目前有两种方法可以参加该实验。
 
