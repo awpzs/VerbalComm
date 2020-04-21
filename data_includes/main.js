@@ -1,5 +1,5 @@
 PennController.ResetPrefix(null); // Initiates PennController
-//PennController.DebugOff()
+PennController.DebugOff()
 // Start typing your code here
 PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
 
@@ -8,84 +8,34 @@ Sequence( "information", "identification", "instruction", "prac_1", "prac_2", "p
 newTrial( "information" ,
     newHtml("information_CHN", "information_CHN.html")
         .print()
-//    ,
-//    newTextInput("inputName", "名字")
-//        .settings.center()
-//        .log()
-//        .print()
     ,
     newButton("我同意")
         .settings.center()
         .print()
         .wait()
-)
 
-newTrial( "identification" ,
-    defaultText
+)
+.log( "ID" , getVar("ID") )
+
+newTrial("identification" ,
+    newText("请在下方输入您的Prolific ID（请务必输入此ID，否则无法领取报酬）：")
+        .settings.center()
         .print()
     ,
-    newText("<p>开始实验前，请填写以下信息：</p>")
-    ,
-    newText("<p>您是否是大学生？</p>")
-    ,
-    newScale("uni", "是", "否")
-        .settings.labelsPosition("right")
-        .log("last")
+    newTextInput("inputID", "请输入您的Prolific ID")
+        .settings.center()
+        .log()
         .print()
     ,
-    newTextInput("university", "大学名称")
+    newButton("继续")
+        .settings.center()
         .print()
-    ,
-    newText("<p>您是否被确诊过有阅读或视觉障碍？</p>")
-    ,
-    newScale("dyslexia", "是", "否")
-        .settings.labelsPosition("right")
-        .log("last")
-        .print()
-    ,
-    newText("<p>您的母语是否为中文？</p>")
-    ,
-    newScale("native", "是", "否")
-        .settings.labelsPosition("right")
-        .log("last")
-        .print()
-    ,
-    newText("<p>您在家时，父母是否只跟您讲中文？</p>")
-    ,
-    newScale("nativeParents", "是", "否")
-        .settings.labelsPosition("right")
-        .log("last")
-        .print()
-    ,
-    newText("<p>请在下方填写您的年龄、性别和Prolific ID，然后点击“开始”进入实验介绍环节。</p>")
-    ,
-    newTextInput("inputAge", "年龄")
-        .print()
-    ,
-    newTextInput("inputSex", "性别")
-        .print()    
-    ,
-    newTextInput("inputID", "Prolific ID")
-        .print()
-    ,
-    newButton("开始")
-        .print()
-        .wait()
-    ,
-    newVar("Age")
-        .global()
-        .set( getTextInput("inputAge") )
-    ,
-    newVar("Sex")
-        .global()
-        .set( getTextInput("inputSex") )
+        .wait()    
     ,
     newVar("ID")
         .global()
         .set( getTextInput("inputID") )
 )
-.log( "Age", getVar("Age"))
-.log( "Sex", getVar("Sex"))
 .log( "ID" , getVar("ID") )
 
 newTrial( "instruction" ,
@@ -108,7 +58,7 @@ newTrial( "prac_1" ,
         .print()
     ,
     newImage("one", "P3_1.jpg")
-        .size(768,480)
+        .size(768,512)
         .print()
     ,
     newText("sentence", "香肠上方的男人在三号位。")
@@ -132,7 +82,7 @@ newTrial( "prac_1" ,
         .print()
     ,
     newImage("two", "P3_2.jpg")
-        .size(768,480)
+        .size(768,512)
         .print()
     ,
     newTextInput("Response", "现在")
@@ -164,7 +114,7 @@ newTrial( "prac_2" ,
         .print()
     ,
     newImage("one", "P1_1.jpg")
-        .size(768,480)
+        .size(768,512)
         .print()
     ,
     newText("sentence", "行李箱旁边的溜冰鞋在一号位。")
@@ -188,7 +138,7 @@ newTrial( "prac_2" ,
         .print()
     ,
     newImage("two", "P1_2.jpg")
-        .size(768,480)
+        .size(768,512)
         .print()
     ,
     newTextInput("Response", "现在")
@@ -215,6 +165,7 @@ newTrial( "prac_end" ,
     newText("<p>正式实验中将不会出现说明和例句。</p>")
     ,
     newButton("开始正式实验")
+        .settings.center()
         .print()
         .wait()
 )
@@ -228,7 +179,7 @@ Template(
             .wait()
         ,
         newImage("one", variable.FirstDisplay)
-            .size(768,480)
+            .size(768,512)
             .print()
         ,
         newText("sentence", variable.Context)
@@ -243,7 +194,7 @@ Template(
         clear()
         ,
         newImage("two", variable.SecondDisplay)
-            .size(768,480)
+            .size(768,512)
             .print()
         ,
         newTextInput("Response", "现在")
@@ -260,11 +211,12 @@ Template(
             .wait()
   )
   .log( "ID"     , getVar("ID")    )
-  .log( "List"   , variable.List   )
+  .log( "List"  , variable.List)
   .log( "Item"   , variable.Item   )
-  .log( "Context"   , variable.Context   )
   .log( "Box"   , variable.Box   )
   .log( "Gender"   , variable.Gender   )
+  .log( "Context"   , variable.Context   )
+
   )
 
 newTrial( "questionnaire" ,
@@ -272,6 +224,7 @@ newTrial( "questionnaire" ,
         .print()
     ,
     newTextInput("feedback", "您个人认为本实验是关于什么的？")
+        .settings.center()
         .settings.log()
         .settings.lines(0)
         .settings.size(400, 200)
