@@ -1,9 +1,11 @@
 PennController.ResetPrefix(null); // Initiates PennController
 PennController.DebugOff()
 // Start typing your code here
-PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
+//PennController.AddHost("https://raw.githubusercontent.com/awpzs/VerbalComm/master/images/")
 
-Sequence( "information", "identification", "instruction", "prac_1", "prac_2", "prac_end", "experiment", "questionnaire", "send", "final" )
+Sequence( "setcounter", "information", "identification", "instruction", "prac_1", "prac_2", "prac_end", "experiment", "questionnaire", "send", "final" )
+
+PennController.SetCounter( "setcounter" );
 
 newTrial( "information" ,
     newHtml("information_CHN", "information_CHN.html")
