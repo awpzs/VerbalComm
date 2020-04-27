@@ -2,7 +2,7 @@
 
 非常感谢您有兴趣参加该项研究。目前有两种方法可以参加该实验。
 
-1. 通过Prolific参加该实验，并获得5英镑现金：
+1. 通过Prolific参加该实验，并获得5英镑现金（PayPal支付）：
     - 首先您需要在[Prolific.co](https://app.prolific.co/register/participant)上注册一个账号；
     - 完成注册并成功验证邮箱后，请在**ABOUT YOU**里填写Basic demographic variables，Geographic variables，Languages和Education几个项目的相关信息，完成后请稍等片刻；
     - 如果您符合该实验的要求，应该可以在**STUDIES**里看见**语言交流研究 (Verbal communication)**；
