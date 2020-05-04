@@ -1,3 +1,5 @@
 ## Verbal communication task
 
-PCIbex experiment adapted from https://doi.org/10.1037/a0031215
+Thank you very much for your interest! For now we have recruited enough participants for this experiment.
+
+If you're interested in taking part in psycholinguistic/psychology/linguistic experiments in the future, please registering your interest by emailing shi.zhang[at]stir.ac.uk
